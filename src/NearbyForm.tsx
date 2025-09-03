@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { User } from "./types"
+import { User } from "./types";
+import AddressAutocomplete from "./AddressAutocomplete";
 
 interface NearbyFormProps {
   onResults: (users: User[], searchCenter?: { lat: number; lon: number; radius: number; address: string }) => void;
@@ -55,34 +56,39 @@ const NearbyForm: React.FC<NearbyFormProps> = ({ onResults }) => {
   };
 
   return (
-    <div>
+    <>
       <h2>Search Nearby</h2>
       <form onSubmit={handleNearbySearch}>
-        <div style={{ marginBottom: "10px" }}>
+        <div className="form-group">
           <label>Address:</label>
-          <input
+          <AddressAutocomplete
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={setAddress}
+            placeholder="Enter search address"
             required
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
-          <label>Radius (mi):</label>
+        <div className="form-group">
+          <label>Radius (miles):</label>
           <input
+            className="form-input"
             type="number"
             value={radius}
             onChange={(e) => setRadius(parseFloat(e.target.value))}
             min={1}
-            style={{ width: "100%", padding: "8px", marginTop: "4px" }}
+            placeholder="Search radius in miles"
           />
         </div>
-        <button type="submit" style={{ padding: "10px", width: "100%" }}>
+        <button type="submit" className="btn-primary">
           Search Nearby
         </button>
       </form>
-      <p>{message}</p>
-    </div>
+      {message && (
+        <div className={`message ${message.includes('Error') ? 'error' : 'info'}`}>
+          {message}
+        </div>
+      )}
+    </>
   );
 };
 

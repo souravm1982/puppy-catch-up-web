@@ -8,9 +8,11 @@ import {
   Circle
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "./App.css";
 import L from "leaflet";
 import { User } from "./types";
 import NearbyForm from "./NearbyForm";
+import AddressAutocomplete from "./AddressAutocomplete";
 
 // Fix default marker issue in Leaflet with Webpack
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -106,49 +108,61 @@ const App: React.FC = () => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       {/* Left Sidebar */}
-      <div style={{ width: "25%", padding: "20px", borderRight: "1px solid #ccc", overflowY: "auto" }}>
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: "10px" }}>
-            <label>Username:</label>
-            <input
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              style={{ width: "100%", padding: "8px", marginTop: "4px" }}
-            />
+      <div className="left-panel">
+        <div className="panel-content">
+          {/* Sign Up Section */}
+          <div className="form-section">
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Username:</label>
+                <input
+                  className="form-input"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  placeholder="Enter your username"
+                />
+              </div>
+              <div className="form-group">
+                <label>Address:</label>
+                <AddressAutocomplete
+                  value={address}
+                  onChange={setAddress}
+                  placeholder="Enter your address"
+                  required
+                />
+              </div>
+              <button type="submit" className="btn-primary">
+                Sign Up
+              </button>
+            </form>
+            {message && (
+              <div className={`message ${message.includes('Error') ? 'error' : 'success'}`}>
+                {message}
+              </div>
+            )}
           </div>
-          <div style={{ marginBottom: "10px" }}>
-            <label>Address:</label>
-            <input
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-              style={{ width: "100%", padding: "8px", marginTop: "4px" }}
-            />
+
+          <hr className="section-divider" />
+
+          {/* Nearby Search Section */}
+          <div className="form-section">
+            <NearbyForm onResults={handleNearbyResults} />
           </div>
-          <button type="submit" style={{ padding: "10px", width: "100%" }}>
-            Sign Up
-          </button>
-        </form>
 
-        <hr style={{ margin: "20px 0" }} />
-
-        <NearbyForm onResults={handleNearbyResults} />
-
-        {/* Results */}
-        {nearbyResults.length > 0 && (
-          <div style={{ marginTop: "15px" }}>
-            <h4>Results:</h4>
-            <ul>
-              {nearbyResults.map((u) => (
-                <li key={u.id}>{u.username}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {message && <p style={{ marginTop: "10px" }}>{message}</p>}
+          {/* Results Section */}
+          {nearbyResults.length > 0 && (
+            <div className="results-section">
+              <h4>Nearby Users Found</h4>
+              <ul className="results-list">
+                {nearbyResults.map((u) => (
+                  <li key={u.id}>{u.username}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Map */}
