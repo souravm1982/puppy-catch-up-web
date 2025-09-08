@@ -187,7 +187,7 @@ const App: React.FC = () => {
               position={[user.latitude, user.longitude]}
               icon={greenIcon}
             >
-              <Popup>🟢 Nearby: {user.username}</Popup>
+              <Popup>� Nearby: {user.username}</Popup>
             </Marker>
           ))}
           {searchCenter && (
@@ -196,7 +196,7 @@ const App: React.FC = () => {
                 position={[searchCenter.lat, searchCenter.lon]}
                 icon={redIcon}
               >
-                <Popup>🔴 Search Center: {searchCenter.address}</Popup>
+                <Popup>� Search Center: {searchCenter.address}</Popup>
               </Marker>
               <Circle
                 center={[searchCenter.lat, searchCenter.lon]}
