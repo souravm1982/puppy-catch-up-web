@@ -1,23 +1,24 @@
-# Bow-Bow-Ties Website
+# Puppy Catch Up Web
 
-A modern Next.js website for premium pet bow ties and accessories, inspired by the original repository from divisham21-cyber/Bow-Bow-Ties.
+A modern Next.js web application for connecting dog owners and organizing puppy playdates and meetups.
 
 ## Features
 
-- 🎀 **Premium Pet Accessories**: Stylish bow ties designed for pets
-- 🎨 **Modern Design**: Clean, responsive design with Tailwind CSS
-- ⚡ **Next.js 15**: Built with the latest Next.js framework
+- 🐕 **User Registration**: Sign up to join the puppy community
+- 📍 **Location-Based Search**: Find nearby dog owners and events
+- 🗺️ **Interactive Maps**: View locations on an interactive map
+- 📱 **Responsive Design**: Mobile-first design that works on all devices
+- ⚡ **Next.js**: Built with modern React framework
 - 🔧 **TypeScript**: Full type safety throughout the application
-- 📱 **Responsive**: Mobile-first design that works on all devices
-- 🛒 **E-commerce Ready**: Product catalog with filtering capabilities
 
 ## Tech Stack
 
 - **Framework**: Next.js 15.0.0
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS 3.3.5
+- **Maps**: React Leaflet
+- **HTTP Client**: Axios
 - **UI**: React 18.2.0
-- **Build Tool**: Next.js with SWC
 
 ## Getting Started
 
@@ -28,7 +29,7 @@ A modern Next.js website for premium pet bow ties and accessories, inspired by t
 
 ### Installation
 
-1. Clone the repository or use this code
+1. Clone the repository
 2. Install dependencies:
 
 ```bash
@@ -58,14 +59,19 @@ bun dev
 ## Project Structure
 
 ```
-bow-bow-ties-website/
+puppy-catch-up-web/
 ├── pages/
 │   ├── _app.tsx          # App component with global styles
-│   └── index.tsx         # Homepage
+│   └── index.tsx         # Homepage with signup and nearby search
+├── src/
+│   ├── AddressAutocomplete.tsx  # Address input component
+│   ├── NearbyForm.tsx           # Nearby users search form
+│   ├── MapComponent.tsx         # Interactive map component
+│   ├── SignupForm.tsx           # User registration form
+│   └── types.ts                 # TypeScript type definitions
 ├── styles/
 │   └── globals.css       # Global styles with Tailwind
 ├── public/               # Static assets
-├── components/           # Reusable React components (future)
 ├── package.json          # Dependencies and scripts
 ├── next.config.js        # Next.js configuration
 ├── tailwind.config.js    # Tailwind CSS configuration
@@ -75,37 +81,20 @@ bow-bow-ties-website/
 
 ## Features Implemented
 
-### Homepage
-- **Hero Section**: Eye-catching banner with call-to-action buttons
-- **Product Catalog**: Grid layout showcasing bow tie products
-- **Category Filtering**: Filter products by category
-- **About Section**: Information about the brand and quality
-- **Responsive Navigation**: Mobile-friendly header navigation
-- **Footer**: Contact information and quick links
+### User Registration
+- Form validation for user signup
+- Address autocomplete functionality
+- Demo data for offline functionality
 
-### Products
-- Product cards with images, descriptions, and pricing
-- Interactive category filtering
-- Hover effects and smooth transitions
-- Add to cart functionality (UI ready)
+### Nearby Search
+- Search for nearby dog owners by location
+- Interactive map display with markers
+- Graceful error handling with demo data fallbacks
 
-### Styling
-- Custom color palette with primary (orange) and secondary (blue) themes
-- Responsive design with mobile-first approach
-- Custom CSS components for buttons and cards
-- Smooth animations and transitions
-
-## Customization
-
-### Colors
-The color scheme can be customized in `tailwind.config.js`:
-- **Primary**: Orange tones for main branding
-- **Secondary**: Blue tones for accents
-
-### Content
-- Update product data in `pages/index.tsx`
-- Modify company information in the footer
-- Add new sections by editing the homepage
+### Maps Integration
+- React Leaflet for interactive maps
+- Custom markers for user locations
+- Server-side rendering compatibility
 
 ## Deployment
 
@@ -115,14 +104,14 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/pages/b
 
 ## Future Enhancements
 
-- [ ] Shopping cart functionality
-- [ ] Product detail pages
-- [ ] User authentication
-- [ ] Payment integration
-- [ ] Admin panel for product management
-- [ ] Customer reviews and ratings
-- [ ] Search functionality
-- [ ] Wishlist feature
+- [ ] User authentication and profiles
+- [ ] Event creation and management
+- [ ] Real-time messaging between users
+- [ ] Photo sharing for pets
+- [ ] Rating and review system
+- [ ] Push notifications for nearby events
+- [ ] Advanced search filters
+- [ ] Social features and friend connections
 
 ## Contributing
 
@@ -135,9 +124,3 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/pages/b
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Inspired by the original Bow-Bow-Ties repository by divisham21-cyber
-- Built with Next.js and Tailwind CSS
-- Icons and emojis used for visual appeal
